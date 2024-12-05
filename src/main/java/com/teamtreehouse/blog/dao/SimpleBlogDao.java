@@ -3,9 +3,7 @@ package com.teamtreehouse.blog.dao;
 import com.teamtreehouse.blog.model.BlogEntry;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class SimpleBlogDao implements BlogDao{
     private List<BlogEntry> entries;
@@ -33,5 +31,14 @@ public class SimpleBlogDao implements BlogDao{
                 .filter(entry -> entry.getSlug().equals(slug))
                 .findFirst()
                 .orElseThrow(NotFoundException::new);
+    }
+
+
+    /*Extra Credit
+        * Implement deleteEntryBySlug
+    */
+    @Override
+    public void deleteEntryBySlug(String slug) {
+        entries.removeIf(entry -> entry.getSlug().equals(slug));
     }
 }

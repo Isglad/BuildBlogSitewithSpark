@@ -13,4 +13,9 @@ public interface BlogDao {
 
     // Adds the ability to find one by slug
     BlogEntry findEntryBySlug(String slug);
+
+    /*Extra Credit
+        * Adds the ability to delete one by slug
+    */
+    void deleteEntryBySlug(String slug);
 }
