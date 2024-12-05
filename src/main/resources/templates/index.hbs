@@ -1,0 +1,35 @@
+{{#partial "content"}}
+    <header>
+        <div class="container">
+            <div class="site-header">
+                <a class="logo" href="/">SparkBlog</a>
+                <!-- Link to add new entry   -->
+                <a class="new-entry button button-round" href="/new"><i class="material-icons">create</i></a>
+            </div>
+        </div>
+    </header>
+
+        <!--  List blog entries with titles and creation dates -->
+    {{#each entries}}
+        <div class="container">
+            <div class="entry-list">
+                <article>
+                    <!--  Hyperlink titles to respective detail pages  -->
+                    <h2><a href="/entries/{{ slug }}">{{ title }}</a></h2>
+                    <time datetime="{{ creationDate }}">{{ formattedDate }}</time>
+                </article>
+            </div>
+        </div>
+    {{/each}}
+{{/partial}}
+
+{{#partial "footer"}}
+    <footer>
+        <div>
+            <a href="#">Contact Us</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;
+            <a href="#">Terms</a>
+        </div>
+    </footer>
+{{/partial}}
+
+{{> base.hbs}}
