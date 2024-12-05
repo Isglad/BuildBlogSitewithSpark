@@ -1,0 +1,51 @@
+{{#partial "title"}}{{entry.title}}{{/partial}}
+
+{{#partial "content"}}
+    <header>
+        <div class="container">
+            <div class="site-header">
+                <a class="logo" href="/">SparkBlog</a>
+                <!-- Link to add new entry   -->
+                <a class="new-entry button button-round" href="/new"><i class="material-icons">create</i></a>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class="container">
+            <div class="edit-entry">
+                <h2>Edit Entry</h2>
+                <form action="/entries/{{entry.slug}}" method="post">
+                    <label for="title"> Title</label>
+                    <input type="text" name="title" id="title" value="{{entry.title}}"><br>
+
+                    <label for="content">Content</label>
+                    <textarea rows="5" name="content" id="content">{{entry.content}}</textarea>
+
+                    <label for="tags">Tags (separate by comma)</label>
+<!--                    <input type="text" name="tags" id="tags" value="{{#if entry.tags}}{{#each entry.tags}}{{this}}{{/each}}{{/if}}">-->
+                    <input type="text" name="tags" id="tags">
+
+                    <input type="submit" value="Save Entry" class="button">
+                    <a href="/entries/{{entry.slug}}" class="button button-secondary">Cancel</a>
+                </form>
+                <form action="/entries/{{entry.slug}}/delete" method="post" style="display: inline;">
+                    <input type="hidden" name="_method" value="DELETE"><br>
+<!--                    <input type="submit" value="Save Entry" class="button">-->
+                    <button type="submit" style="background-color: red; color: white;">Delete Entry</button>
+<!--                    <a href="/" class="button button-secondary">Delete Entry</a>-->
+                </form>
+            </div>
+        </div>
+    </section>
+{{/partial}}
+
+{{#partial "footer"}}
+    <footer>
+        <div>
+            <a href="#">Contact Us</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;
+            <a href="#">Terms</a>
+        </div>
+    </footer>
+{{/partial}}
+
+{{> base.hbs}}
