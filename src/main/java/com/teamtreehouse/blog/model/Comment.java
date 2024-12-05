@@ -2,6 +2,7 @@ package com.teamtreehouse.blog.model;
 
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Comment {
     // Adding fields
@@ -26,6 +27,11 @@ public class Comment {
 
     public LocalDateTime getCreationDate() {
         return creationDate;
+    }
+
+    public String getFormattedDate () {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy 'at' H:mm");
+        return creationDate.format(formatter);
     }
 
     // Setters
