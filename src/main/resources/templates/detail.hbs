@@ -1,0 +1,75 @@
+{{#partial "title"}}{{entry.title}}{{/partial}}
+
+{{#partial "content"}}
+    <header>
+        <div class="container">
+            <div class="site-header">
+                <a class="logo" href="/">SparkBlog</a>
+                <!-- Link to add new entry   -->
+                <a class="new-entry button button-round" href="/new"><i class="material-icons">create</i></a>
+            </div>
+        </div>
+    </header>
+    <!-- Displaying a full blog post content    -->
+    <section>
+        <div class="container">
+            <div class="entry-list single">
+                <article>
+                    <h1>{{ entry.title }}</h1>
+                    <time datetime={{ entry.creationDate }}>{{ entry.formattedDate }}</time>
+                    <!--   If an entry has tags, display them  -->
+                    {{#if entry.tags}}
+<!--                        <p><strong>Tags:</strong>{{ entry.tags }}</p>-->
+                        <p><strong>Tags:</strong>{{#each entry.tags}}<span>{{this}}</span>{{/each}}</p>
+                    {{/if}}
+                    <div class="entry">
+                        <p>{{ entry.content }}</p>
+                        <!--  Adding a link to edit the entry -->
+                        <p><a class="link" href="/entries/{{entry.slug}}/edit">Edit Entry</a></p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+    <!-- Including a form for adding new comments  -->
+    <section class="entry-comments">
+        <div class="container">
+            <h2>Comments</h2>
+            <div class="comment">
+                {{#each entry.comments}}
+                        <strong>{{author}}</strong>
+                        <br>
+                        <time datetime={{ creationDate }}>{{ formattedDate }}</time>
+                        <p>{{content}}</p>
+                        <br>
+                {{/each}}
+            </div>
+            <div class="new-comment">
+                <form action="/entries/{{entry.slug}}/comments" method="post">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name"><br>
+                    <label for="comment">Comment</label>
+                    <textarea rows="5" name="comment" id="comment"></textarea>
+                    <input type="submit" value="Post Comment" class="button">
+                </form>
+            </div>
+        </div>
+    </section>
+{{/partial}}
+
+{{#partial "footer"}}
+    <footer>
+        <div>
+            <a href="#">Contact Us</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;
+            <a href="#">Terms</a>
+        </div>
+    </footer>
+{{/partial}}
+
+{{> base.hbs}}
+
+<!--border-top: 1px solid #c1c1c1;-->
+<!--border-bottom: 1px solid #c1c1c1;-->
+<!--padding: 35px 0 20px;-->
+
+<!--border-top: 1px solid #c1c1c1;-->
