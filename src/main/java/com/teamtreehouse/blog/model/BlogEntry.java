@@ -3,8 +3,8 @@ package com.teamtreehouse.blog.model;
 import com.github.slugify.Slugify;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class BlogEntry {
     // Adding necessary fields
@@ -13,12 +13,18 @@ public class BlogEntry {
     private String content;
     private LocalDateTime creationDate;
     private List<Comment> comments;
+    /* Extra Credit
+        *Adding a "Tags" Property
+    */
+    private Set<String> tags;
 
-    public BlogEntry(String title, String content) {
+    public BlogEntry(String title, String content, String... tags) {
         this.title = title;
         this.content = content;
         this.creationDate = LocalDateTime.now();
         this.comments = new ArrayList<>();
+        //  Initializing the set with provided tags
+        this.tags = new HashSet<>(Arrays.asList(tags));
         try {
             Slugify slugify = new Slugify();
             slug = slugify.slugify(title);
@@ -40,6 +46,11 @@ public class BlogEntry {
         return creationDate;
     }
 
+    public String getFormattedDate () {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy 'at' H:mm");
+        return creationDate.format(formatter);
+    }
+
     // Implementation of a method that manages comments
     public boolean addComment(Comment comment) {
         // Store these comments!
@@ -54,6 +65,16 @@ public class BlogEntry {
         return slug;
     }
 
+    /* Extra Credit
+        *Adding a "Tags" Property
+    */
+    public Set<String> getTags(){
+        return tags;
+    }
+
+    public void addTag(String tag){
+        this.tags.add(tag);
+    }
 
     // Setters
     public void setTitle(String title) {
@@ -66,5 +87,9 @@ public class BlogEntry {
 
     public void setSlug(String slug) {
         this.slug = slug;
+    }
+
+    public void setTags(Set<String> tags) {
+        this.tags = tags;
     }
 }
