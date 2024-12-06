@@ -22,7 +22,6 @@
                     <textarea rows="5" name="content" id="content">{{entry.content}}</textarea>
 
                     <label for="tags">Tags (separate by comma)</label>
-<!--                    <input type="text" name="tags" id="tags" value="{{#if entry.tags}}{{#each entry.tags}}{{this}}{{/each}}{{/if}}">-->
                     <input type="text" name="tags" id="tags">
 
                     <input type="submit" value="Save Entry" class="button">
@@ -30,9 +29,7 @@
                 </form>
                 <form action="/entries/{{entry.slug}}/delete" method="post" style="display: inline;">
                     <input type="hidden" name="_method" value="DELETE"><br>
-<!--                    <input type="submit" value="Save Entry" class="button">-->
                     <button type="submit" style="background-color: red; color: white;">Delete Entry</button>
-<!--                    <a href="/" class="button button-secondary">Delete Entry</a>-->
                 </form>
             </div>
         </div>
